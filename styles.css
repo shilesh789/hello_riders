@@ -1,0 +1,33 @@
+body{
+    background-color: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vh;
+
+
+
+}
+
+.myform{
+    border: 2px;
+    border-style: solid;
+    border-radius: 3px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 30px;
+    position: fixed;
+}
+
+input{
+    background-color: lightgray;
+    right: 0px;
+    position: relative
+}
+
+label{
+    font-family: cursive;
+}

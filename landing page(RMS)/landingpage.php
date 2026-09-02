@@ -1,3 +1,7 @@
+<?php
+
+require_once "database.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,6 +72,7 @@
         <!-- ================= RIGHT SECTION ================= -->
 
         <div class="right-section">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
             <div class="login-container">
 
@@ -90,8 +95,9 @@
 
                         <input
                             type="text"
-                            placeholder="Enter email or phone number"
-                        >
+                            placeholder="Enter phone number"
+                            name="email"
+                        > 
 
                     </div>
 
@@ -111,6 +117,7 @@
                         <input
                             type="password"
                             placeholder="Enter your password"
+                            name="password"
                         >
 
                         <i class="fa-regular fa-eye password-eye"></i>
@@ -126,7 +133,7 @@
 
                     <label>
 
-                        <input type="checkbox">
+                        <input type="checkbox" name="remember me">
 
                         <span>Remember Me</span>
 
@@ -141,7 +148,7 @@
 
                 <!-- Sign In Button -->
 
-                <button class="login-button">
+                <button class="login-button" name="login_button">
                     Log in
                 </button>
 
@@ -171,8 +178,8 @@
 
                 </p>
 
-            </div>
-
+              </div>
+            </form>
         </div>
 
     </div>
@@ -180,3 +187,19 @@
 </body>
 
 </html>
+
+<?php
+if(isset($_POST['login_button'])){
+$email=$_POST['email']??"";
+$password=$_POST['password']??"";
+$result= mysqli_query($conn, "SELECT * FROM userLoginInfo WHERE email='$email'");
+
+$row=$result->fetch_assoc();
+    
+if($email==$row["email"] && $password==$row["password"]){
+    echo "logged in succcessfully";
+}else{
+    echo "Incorrect credential";
+}
+}
+?>

@@ -246,6 +246,12 @@ body {
     width: 100%;
 
     max-width: 500px;
+
+    border-style: dashed;
+
+    border-color: #000000;
+    
+    border-width: 10px;
 }
 
 

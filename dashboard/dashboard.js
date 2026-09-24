@@ -471,90 +471,58 @@ function updateUserLocation(
 
 }
 
-function addTrackingPoint(
-
-    lat,
-
-    lon
-
-) {
-
+function addTrackingPoint(lat, lon) {
 
     const newPoint = [
-
         lat,
-
         lon
-
     ];
 
+    if (trackingCoordinates.length === 0) {
 
+        trackingCoordinates.push(newPoint);
 
-    // Add point to array
+        if (trackingLine !== null) {
 
-    trackingCoordinates.push(
+            trackingLine.setLatLngs(
+                trackingCoordinates
+            );
 
-        newPoint
+        }
 
-    );
-
-
-
-    // Update blue line
-
-    if (trackingLine !== null) {
-
-
-        trackingLine.setLatLngs(
-
-            trackingCoordinates
-
-        );
-
+        return;
     }
 
+    const lastPoint =
+        trackingCoordinates[
+            trackingCoordinates.length - 1
+        ];
 
-
-    console.log(
-
-        "Tracking points:",
-
-        trackingCoordinates
-
-    );
-
-}
-
-function showCoordinates() {
-
-
-    const coordinateBox =
-
-        document.getElementById(
-            "coordinate"
+    const distance =
+        map.distance(
+            lastPoint,
+            newPoint
         );
 
-
-    if (!coordinateBox) {
+    if (distance < 10) {
 
         return;
 
     }
 
+    trackingCoordinates.push(
+        newPoint
+    );
 
+    if (trackingLine !== null) {
 
-    coordinateBox.innerText =
+        trackingLine.setLatLngs(
+            trackingCoordinates
+        );
 
-        "Lat: " +
-
-        latitude.toFixed(6) +
-
-        " | Lon: " +
-
-        longitude.toFixed(6);
+    }
 
 }
-
 function setUserActive() {
 
 

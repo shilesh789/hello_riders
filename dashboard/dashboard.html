@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RideConnect Dashboard</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin="">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet"
+          href="dashboard.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <aside class="sidebar">
+
+        <!-- LOGO -->
+
+        <div class="logo-section">
+
+            <img src="images/logo.png"
+                 alt="RideConnect Logo"
+                 class="logo">
+
+        </div>
+
+
+        <nav class="navigation">
+
+            <!-- DASHBOARD -->
+
+            <a href="#"
+               class="nav-item">
+
+                <img src="images/home.png"
+                     alt="Dashboard"
+                     class="nav-icon">
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <!-- LIVE RIDE -->
+
+            <a href="#"
+               class="nav-item active-nav">
+
+                <img src="images/live-ride.png"
+                     alt="Live Ride"
+                     class="nav-icon">
+
+                <span>Live Ride</span>
+
+            </a>
+
+
+            <!-- RIDE HISTORY -->
+
+            <a href="#"
+               class="nav-item">
+
+                <img src="images/history.png"
+                     alt="Ride History"
+                     class="nav-icon">
+
+                <span>Ride History</span>
+
+            </a>
+
+
+            <!-- PROFILE -->
+
+            <a href="#"
+               class="nav-item">
+
+                <img src="images/profile.png"
+                     alt="Profile"
+                     class="nav-icon">
+
+                <span>Profile</span>
+
+            </a>
+
+
+            <!-- SETTINGS -->
+
+            <a href="#"
+               class="nav-item">
+
+                <img src="images/setting.png"
+                     alt="Settings"
+                     class="nav-icon">
+
+                <span>Settings</span>
+
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <!-- HELP -->
+
+            <a href="#"
+               class="bottom-nav-item">
+
+                <img src="images/help.png"
+                     alt="Help">
+
+                <span>Help</span>
+
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <a href="#"
+               class="bottom-nav-item">
+
+                <img src="images/logout.png"
+                     alt="Logout">
+
+                <span>Logout</span>
+
+            </a>
+
+            <!-- SAFETY MESSAGE -->
+
+            <div class="safety-message">
+
+                <div class="safety-line"></div>
+
+                <p>
+                    Ride safe, stay<br>
+                    connected.
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+    
+        <section class="ride-header">
+
+            <!-- RIDE TITLE -->
+
+            <div class="ride-title">
+
+                <div class="title-row">
+
+                    <h1>Morning Ride</h1>
+
+                    <span class="active-badge"
+                          id="userStatus">
+
+                        <span class="active-dot"></span>
+
+                        Active
+
+                    </span>
+
+                </div>
+
+                <p>Started at 07:30 AM</p>
+
+            </div>
+
+
+
+            <div class="ride-stats">
+
+                <!-- RIDERS -->
+
+                <div class="stat">
+
+                    <strong>4</strong>
+
+                    <span>Riders</span>
+
+                </div>
+
+
+                <!-- ONLINE -->
+
+                <div class="stat">
+
+                    <strong>3</strong>
+
+                    <span>Online</span>
+
+                </div>
+
+
+                <!-- DISTANCE -->
+
+                <div class="stat">
+
+                    <strong>12.4 km</strong>
+
+                    <span>Distance</span>
+
+                </div>
+
+
+                <!-- DURATION -->
+
+                <div class="stat">
+
+                    <strong>01:15:32</strong>
+
+                    <span>Duration</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="ride-area">
+
+
+            <!-- MAP -->
+
+            <div class="map-section">
+
+                <div id="map"></div>
+
+                <!-- CURRENT COORDINATES -->
+
+                <p id="coordinate"
+                   class="coordinate">
+                </p>
+
+            </div>
+
+
+            <aside class="right-panel">
+
+
+                <div class="info-box ride-status-box">
+
+                    <div class="info-title-row">
+
+                        <h2>Ride Status</h2>
+
+                        <span class="small-active">
+
+                            <span class="small-active-dot"></span>
+
+                            Active
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="status-information">
+
+                        <!-- SPEED -->
+
+                        <div class="status-row">
+
+                            <span>
+                                <i class="fa-solid fa-gauge-high status-icon"></i>
+                                Your Speed
+                            </span>
+
+                            <strong>52 km/h</strong>
+
+                        </div>
+
+
+                        <!-- MAX SPEED -->
+
+                        <div class="status-row">
+
+                            <span>
+                                <i class="fa-solid fa-gauge-high status-icon"></i>
+                                Max Speed
+                            </span>
+
+                            <strong>76 km/h</strong>
+
+                        </div>
+
+
+                        <!-- ETA -->
+
+                        <div class="status-row">
+
+                            <span>
+                                <i class="fa-regular fa-clock status-icon"></i>
+                                ETA
+                            </span>
+
+                            <strong>08:45 AM</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="info-box members-box">
+
+                    <h2>Live Members</h2>
+
+
+                    <!-- YOU -->
+
+                    <div class="member">
+
+                        <div class="member-information">
+
+                            <div class="member-avatar">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+
+                            <span class="status-dot leader"></span>
+
+                            <div>
+
+                                <strong>You (Leader)</strong>
+
+                                <small id="userOnlineStatus">
+                                    Online
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <span class="member-speed">
+                            52 km/h
+                        </span>
+
+                    </div>
+
+
+                    <!-- RAM -->
+
+                    <div class="member">
+
+                        <div class="member-information">
+
+                            <div class="member-avatar">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+
+                            <span class="status-dot online"></span>
+
+                            <div>
+
+                                <strong>Ram Sharma</strong>
+
+                                <small>
+                                    Online
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <span class="member-speed">
+                            49 km/h
+                        </span>
+
+                    </div>
+
+
+                    <!-- HARI -->
+
+                    <div class="member">
+
+                        <div class="member-information">
+
+                            <div class="member-avatar">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+
+                            <span class="status-dot stopped"></span>
+
+                            <div>
+
+                                <strong>Hari Thapa</strong>
+
+                                <small class="stopped-text">
+                                    Stopped
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <span class="member-speed">
+                            0 km/h
+                        </span>
+
+                    </div>
+
+
+                    <!-- SITA -->
+
+                    <div class="member">
+
+                        <div class="member-information">
+
+                            <div class="member-avatar">
+                                <i class="fa-regular fa-user"></i>
+                            </div>
+
+                            <span class="status-dot online"></span>
+
+                            <div>
+
+                                <strong>Sita Karki</strong>
+
+                                <small>
+                                    Online
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                        <span class="member-speed">
+                            46 km/h
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <section class="ride-controls">
+
+
+            <!-- PAUSE RIDE -->
+
+            <button type="button"
+                    class="control-button pause-button"
+                    onclick="pauseRide()">
+
+                <i class="fa-solid fa-pause"></i>
+
+                <span>Pause Ride</span>
+
+            </button>
+
+
+            <!-- END RIDE -->
+
+            <button type="button"
+                    class="control-button end-button"
+                    onclick="endRide()">
+
+                <i class="fa-regular fa-circle-stop"></i>
+
+                <span>End Ride</span>
+
+            </button>
+
+
+            <!-- SHARE LOCATION -->
+
+            <button type="button"
+                    class="control-button share-button"
+                    onclick="shareLocation()">
+
+                <i class="fa-solid fa-share-nodes"></i>
+
+                <span>Share Location</span>
+
+            </button>
+
+
+            <!-- SOS -->
+
+            <button type="button"
+                    class="control-button sos-button"
+                    onclick="sosEmergency()">
+
+                <i class="fa-solid fa-satellite-dish"></i>
+
+                <span>
+                    SOS<br>
+                    Emergency
+                </span>
+
+            </button>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin="">
+</script>
+
+
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>
